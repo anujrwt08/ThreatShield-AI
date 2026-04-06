@@ -8,10 +8,6 @@
 
 Initially conceived as a design prototype in **Google Stitch**, ThreatShield AI has been fully migrated into a robust, full-stack **Next.js 16** application. The platform provides a unified interface for incident logging, threat simulation, and autonomous agent management.
 
-### 🎥 [Live Demo Preview](http://localhost:3000)
-
----
-
 ## ✨ Key Features
 
 ### 📊 Reactive Security Dashboard (Logs)
