@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ThreatShield AI Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#b0c6ff",
+                        "on-primary-fixed-variant": "#00429c",
+                        "tertiary": "#ffb2b7",
+                        "on-error-container": "#ffdad6",
+                        "primary": "#b0c6ff",
+                        "secondary": "#bcc7de",
+                        "primary-fixed": "#d9e2ff",
+                        "surface": "#0e131f",
+                        "primary-container": "#00061c",
+                        "on-background": "#dde2f3",
+                        "tertiary-container": "#190003",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-secondary": "#263143",
+                        "surface-bright": "#343946",
+                        "outline": "#909096",
+                        "surface-container-low": "#161c28",
+                        "on-tertiary-fixed-variant": "#92002a",
+                        "secondary-fixed": "#d8e3fb",
+                        "inverse-surface": "#dde2f3",
+                        "surface-container-highest": "#2f3542",
+                        "outline-variant": "#45474c",
+                        "surface-dim": "#0e131f",
+                        "surface-container": "#1a202c",
+                        "on-surface": "#dde2f3",
+                        "primary-fixed-dim": "#b0c6ff",
+                        "on-primary-container": "#0070ff",
+                        "tertiary-fixed-dim": "#ffb2b7",
+                        "tertiary-fixed": "#ffdadb",
+                        "inverse-on-surface": "#2b303d",
+                        "on-tertiary": "#67001b",
+                        "surface-variant": "#2f3542",
+                        "error-container": "#93000a",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "on-tertiary-fixed": "#40000d",
+                        "on-tertiary-container": "#e13052",
+                        "inverse-primary": "#0058cb",
+                        "surface-container-lowest": "#080e1a",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .micro-glow {
+            box-shadow: inset 1px 1px 0px 0px rgba(176, 198, 255, 0.1);
+        }
+        .emerald-pulse {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+        }
+        .status-scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(176, 198, 255, 0.05) 50%);
+            background-size: 100% 4px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-8 h-16 w-full fixed top-0 z-50 bg-[#0e131f]/80 backdrop-blur-xl font-['Space_Grotesk'] tracking-tight">
+<div class="text-xl font-bold text-[#b0c6ff] flex items-center gap-2">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+<span>ThreatShield AI</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-[#b0c6ff] border-b-2 border-[#b0c6ff] pb-1 hover:text-[#b0c6ff] transition-colors duration-300" href="#">Product</a>
+<a class="text-slate-400 hover:text-[#b0c6ff] transition-colors duration-300" href="#">Solutions</a>
+<a class="text-slate-400 hover:text-[#b0c6ff] transition-colors duration-300" href="#">Pricing</a>
+</nav>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center gap-4 px-4 py-1.5 bg-surface-container-low rounded-full border border-outline-variant/10">
+<span class="flex h-2 w-2 rounded-full bg-emerald-500 emerald-pulse"></span>
+<span class="text-[10px] uppercase tracking-widest font-headline font-bold text-on-surface-variant">Posture: Optimal</span>
+</div>
+<button class="bg-primary text-on-primary px-5 py-2 rounded-lg font-headline font-bold text-sm scale-95 active:scale-90 transition-all hover:shadow-[0_0_15px_rgba(176,198,255,0.3)]">
+                Secure My Business
+            </button>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-20 flex flex-col items-center py-8 z-40 bg-[#0e131f]/60 backdrop-blur-2xl shadow-[0_0_20px_rgba(176,198,255,0.05)]">
+<div class="flex flex-col gap-8">
+<!-- Active: Dashboard -->
+<button class="group relative flex flex-col items-center gap-1 bg-[#b0c6ff]/10 text-[#b0c6ff] border-r-2 border-[#b0c6ff] py-3 px-4 transition-all">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest">Dashboard</span>
+</button>
+<button class="group relative flex flex-col items-center gap-1 text-slate-500 hover:bg-white/5 py-3 px-4 transition-all">
+<span class="material-symbols-outlined text-2xl">terminal</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest">Logs</span>
+</button>
+<button class="group relative flex flex-col items-center gap-1 text-slate-500 hover:bg-white/5 py-3 px-4 transition-all">
+<span class="material-symbols-outlined text-2xl">security</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest">Agents</span>
+</button>
+</div>
+<div class="mt-auto flex flex-col items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center micro-glow overflow-hidden">
+<img alt="System Status" class="w-8 h-8" data-alt="Stylized robotic avatar icon with cyan circuitry patterns on a dark metallic background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY1OAKlsxY9-GV076S97cAaXyIusnGs_f6KVRvEQGzOM9m2cvYRhIBDAyToI8pPleHq9G46M9MMIo3peqwcmUoBbJHjCjbIX5CWyrcctkI5X-3f0BNoOYIsrugu5-RSQAgff7Pn145JdzyxkKi1pmFryACETddrcUyuo0ccNjuiRy3etWBp0LWCmJtZa8VvK0ixXLDQqMbCGTp4jRMy8uuuotXdyR9G5P8nO18qY3yOWLikh83aaLHCFo3HzP5vtv1qHwPJX4qM_n0"/>
+</div>
+<div class="text-center">
+<div class="font-['Space_Grotesk'] text-[8px] uppercase tracking-tighter text-primary">Node Alpha</div>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-20 mt-16 p-8 min-h-screen bg-surface status-scanline">
+<div class="max-w-[1600px] mx-auto">
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Column: Incident Feed (4/12) -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h2 class="font-headline text-xl font-bold tracking-tight text-on-surface">Reactive Incident Log</h2>
+<span class="text-[10px] font-headline tracking-widest uppercase text-slate-500">Live Updates • 0.2ms Latency</span>
+</div>
+<!-- Critical Alert -->
+<div class="bg-surface-container-low p-6 rounded-xl micro-glow relative overflow-hidden group border-l-4 border-error-container">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-lg bg-error-container/20 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-3xl">database</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-error-container text-on-error-container text-[10px] font-bold uppercase tracking-widest rounded">Critical</span>
+<h3 class="font-headline font-bold text-on-surface">SQL Injection Blocked</h3>
+</div>
+<p class="text-sm text-on-surface-variant mt-1 font-mono">Source IP: 185.212.44.102</p>
+</div>
+</div>
+<span class="text-[10px] text-slate-500 font-mono">14:22:01</span>
+</div>
+<div class="mt-4 flex justify-end">
+<button class="text-xs font-bold text-tertiary hover:text-white transition-colors flex items-center gap-1 group-hover:gap-2 duration-300">
+                                View Mitigation Details <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Warning Alert -->
+<div class="bg-surface-container-low p-6 rounded-xl micro-glow relative overflow-hidden group border-l-4 border-amber-500/50">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500">
+<span class="material-symbols-outlined text-3xl">phishing</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-amber-500/20 text-amber-500 text-[10px] font-bold uppercase tracking-widest rounded">Warning</span>
+<h3 class="font-headline font-bold text-on-surface">Phishing Attempt Flagged</h3>
+</div>
+<p class="text-sm text-on-surface-variant mt-1">92% Confidence Score • External Gateway</p>
+</div>
+</div>
+<span class="text-[10px] text-slate-500 font-mono">14:18:45</span>
+</div>
+<div class="mt-4 flex justify-end">
+<button class="text-xs font-bold text-amber-500/80 hover:text-amber-500 transition-colors flex items-center gap-1 group-hover:gap-2 duration-300">
+                                Quarantine Email <span class="material-symbols-outlined text-sm">mail_lock</span>
+</button>
+</div>
+</div>
+<!-- Info Alert -->
+<div class="bg-surface-container-low p-6 rounded-xl micro-glow relative overflow-hidden group border-l-4 border-emerald-500/50">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+<span class="material-symbols-outlined text-3xl">fact_check</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-500 text-[10px] font-bold uppercase tracking-widest rounded">Info</span>
+<h3 class="font-headline font-bold text-on-surface">System Scan Complete</h3>
+</div>
+<p class="text-sm text-on-surface-variant mt-1">10,402 logs analyzed across 4 clusters</p>
+</div>
+</div>
+<span class="text-[10px] text-slate-500 font-mono">13:55:12</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Status Monitor & Simulation (8/12) -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<!-- Status Monitor Card -->
+<div class="bg-surface-container-low rounded-xl micro-glow overflow-hidden flex flex-col min-h-[450px] relative">
+<div class="p-8 pb-0">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-emerald-500 emerald-pulse"></span>
+<h2 class="font-headline text-3xl font-extrabold tracking-tighter text-emerald-400">STATUS: SECURE</h2>
+</div>
+<p class="text-slate-400 mt-2 font-mono text-sm tracking-widest">REAL-TIME THREAT NEUTRALIZATION ENGINE ACTIVE</p>
+</div>
+<!-- Dynamic Visualization (Simulated Wave) -->
+<div class="flex-grow flex items-end px-8 py-12">
+<div class="w-full h-48 relative">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 200">
+<defs>
+<lineargradient id="waveGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#b0c6ff" stop-opacity="0.4"></stop>
+<stop offset="100%" stop-color="#b0c6ff" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,100 C150,50 350,150 500,100 C650,50 850,150 1000,100 L1000,200 L0,200 Z" fill="url(#waveGradient)"></path>
+<path class="opacity-80" d="M0,100 C150,50 350,150 500,100 C650,50 850,150 1000,100" fill="none" stroke="#b0c6ff" stroke-width="2"></path>
+<circle cx="500" cy="100" fill="#b0c6ff" r="4">
+<animate attributename="r" dur="2s" repeatcount="indefinite" values="4;8;4"></animate>
+</circle>
+</svg>
+<div class="absolute top-0 left-0 w-full flex justify-between px-2">
+<div class="text-[10px] font-mono text-primary/40">4.2 GB/s THROUGHPUT</div>
+<div class="text-[10px] font-mono text-primary/40">NODE: ALPHA-SEC-01</div>
+</div>
+</div>
+</div>
+<!-- Stats Footer -->
+<div class="grid grid-cols-3 bg-surface-container-lowest/50 backdrop-blur-md border-t border-outline-variant/10">
+<div class="p-6 border-r border-outline-variant/10">
+<div class="text-[10px] uppercase tracking-widest text-slate-500 font-headline font-bold">Threats Deflected</div>
+<div class="text-2xl font-headline font-bold text-on-surface mt-1">1,204</div>
+</div>
+<div class="p-6 border-r border-outline-variant/10">
+<div class="text-[10px] uppercase tracking-widest text-slate-500 font-headline font-bold">AI Certainty</div>
+<div class="text-2xl font-headline font-bold text-primary mt-1">99.98%</div>
+</div>
+<div class="p-6">
+<div class="text-[10px] uppercase tracking-widest text-slate-500 font-headline font-bold">Latency</div>
+<div class="text-2xl font-headline font-bold text-emerald-400 mt-1">12ms</div>
+</div>
+</div>
+</div>
+<!-- Simulation Sandbox -->
+<div class="bg-surface-container-high rounded-xl micro-glow p-8 backdrop-blur-2xl">
+<h3 class="font-headline font-bold text-on-surface flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">biotech</span>
+                            Simulation Sandbox
+                        </h3>
+<div class="relative group">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-transparent rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+<div class="relative flex gap-2">
+<div class="flex-grow">
+<input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant/20 focus:border-primary focus:ring-0 text-sm py-4 px-6 rounded-t-lg transition-all placeholder:text-slate-600" placeholder="Paste suspicious content (URL, Hash, Code snippet)..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary px-8 rounded-lg font-headline font-bold flex items-center gap-2 hover:shadow-[0_0_20px_rgba(176,198,255,0.4)] transition-all whitespace-nowrap">
+                                    Analyze Threat
+                                    <span class="material-symbols-outlined text-sm">rocket_launch</span>
+</button>
+</div>
+</div>
+<div class="mt-4 flex gap-4 text-[10px] font-mono text-slate-500">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">lock_open</span> No data retention</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">memory</span> Isolated Execution</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Bento Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+<div class="bg-surface-container-low p-6 rounded-xl micro-glow flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-headline font-bold tracking-widest uppercase text-slate-500">Neural Health</span>
+<span class="material-symbols-outlined text-primary text-lg">psychology</span>
+</div>
+<img alt="Neural Health Graph" class="w-full h-24 object-cover rounded-lg opacity-60 grayscale hover:grayscale-0 transition-all duration-500" data-alt="Abstract cyber neural network visualization with glowing blue synapses and intricate digital connections on a deep dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBDLgVTSTk6OXspsG6EbCmPDl1b3RcmL7DJ6ZsWOVk6zSch3yZEpYFBCtFjzA2RG35Ogk296je8iRy39Rz-cDFjzxaecy6P7xp1uSgRr-OcSwjuvpnT19CR38Pq3NOGX4u72birX1iNcuQ7LjdtN8Grr8mRH2GwiT0iku7niMZmED69rkS8EQbBiLs9aV2KRXSt41Adl6o8dl4JtVs8M623j0eqFhyb3vjQ9bjfUmHpxNQW7UhPbq1T0DdIz_EVa6Mm6MnGG1w6ixs"/>
+<div class="flex justify-between text-xs font-mono">
+<span class="text-on-surface-variant">Core Load</span>
+<span class="text-primary">24.5%</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl micro-glow flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-headline font-bold tracking-widest uppercase text-slate-500">Global Heatmap</span>
+<span class="material-symbols-outlined text-primary text-lg">public</span>
+</div>
+<div class="w-full h-24 bg-surface-container-lowest rounded-lg overflow-hidden relative">
+<div class="absolute inset-0 bg-primary/5"></div>
+<div class="absolute top-4 left-10 w-2 h-2 rounded-full bg-error animate-ping"></div>
+<div class="absolute bottom-6 right-16 w-1.5 h-1.5 rounded-full bg-error animate-pulse"></div>
+</div>
+<div class="flex justify-between text-xs font-mono">
+<span class="text-on-surface-variant">Active Vectors</span>
+<span class="text-tertiary">14 Nodes</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl micro-glow flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-headline font-bold tracking-widest uppercase text-slate-500">Agent Status</span>
+<span class="material-symbols-outlined text-primary text-lg">support_agent</span>
+</div>
+<div class="flex -space-x-3 overflow-hidden py-4">
+<img alt="Agent 1" class="inline-block h-10 w-10 rounded-full ring-2 ring-surface-container-low" data-alt="Portrait avatar of a tech security specialist male with glasses and modern tactical headset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQTbUFzvPRoUrcmOsGLm0kA-784sBmoeZvATO2ord4h9cpLEjP18XhSjqCpk5h09_BX5GUoUioJrRK6HU-aF-XvFm-nYuVzhMsuRXIocgZEGLmCzPGbZ1ttG4EPbv-POnC4h6u6rKbaTaIsPIEPlJcjIw9PRath3hGsOGNf3rePrfEVJcEUWsdbiOzGuE3d9r2hTv3ENfQE9A9VbMzfddpdNP9_ilbaU8GcmOtzTgO7Vk-_O1kjN7T0VSVsD64pQidQMaLL3j0Cp5Q"/>
+<img alt="Agent 2" class="inline-block h-10 w-10 rounded-full ring-2 ring-surface-container-low" data-alt="Portrait avatar of a female data scientist professional with sleek futuristic interface glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEL-FqVPrbLyQ-83YNpvLIRBHu93B-1Uq9q-sjs0IDT9CW1VsGYvrsnOHFXS3WVqX5IvBzD5ZTEY_GYy-oBzAp_k8b-WRcQ8yIrKevxNzJ9FoMDmTVh3oTIW3zTEuFPbwyLqnO030-RTh_NXu9E4a_rIMfcXo_Dxu7JrY5sgMntrFg-kWbStHt2gLoWamtx8wRqJM4R4ckQcpGRELBmwycCAn66jQvp2a9EgjcrEfr6HBVW5TO1SOZyDHQPbNW4WBRBfGDFGEn57yi"/>
+<img alt="Agent 3" class="inline-block h-10 w-10 rounded-full ring-2 ring-surface-container-low" data-alt="Portrait avatar of a male systems engineer with a focused expression and neon blue lighting accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-Q3uJm7vJB94O9_HS3v5BPq0GTgJ3eBx-Eny_tQXyvvLR_s1ZNm1LMLrWgn-6cH3oY-Ol2EgLRwSxfyUvqxw6FR4goszZaP074_mYn7G3g3-7aA26Ek55hRY4VpmLOJtzmt-yHoOTy175lsdw65jyT0r7THJdgRapIYPoqbtVPrcVkLL3q8nXl_uM2uwZWflboKMRuqL7I83xFXlEAFrgirTF5oPzQJ_lXrRt1W8aHyEVHEvdiIlndqdT8Ka1staktZ2uHAkzz-vV"/>
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-surface-container-highest ring-2 ring-surface-container-low">
+<span class="text-[10px] font-bold">+8</span>
+</div>
+</div>
+<div class="flex justify-between text-xs font-mono">
+<span class="text-on-surface-variant">Active Operators</span>
+<span class="text-emerald-400">11 Online</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
