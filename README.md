@@ -89,5 +89,3 @@ Initially conceived as a design prototype in **Google Stitch**, ThreatShield AI 
 - **NAVBAR Links:** Access deeper information on Solutions and Pricing.
 
 ---
-
-Developed with ❤️ by the ThreatShield AI Team for the Next-Gen Security Hackathon.
